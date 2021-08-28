@@ -28,9 +28,12 @@ devices.onActivated().then((e: any) => {
           return process.exit();
         }
         console.log("VERIFIED - CARD!");
+        // api.verifySignature(SignatureID.FIXED);
+        // api.verifySignature(SignatureID.PORTRAIT);
+        // api.verifySignature(SignatureID.VARIABLE);
 
         /* -------TEST--------- */
-        let res = api.readDocumentData();
+        let res: any = api.readDocumentData();
         if (res.status === CelikApiResponseStatus.OK) {
           console.log("DATA:");
           const data = res.data!;
@@ -66,7 +69,7 @@ devices.onActivated().then((e: any) => {
           console.log(res.status);
         }
         /* -------TEST CERT---- */
-        res = api.readCertificate(CertificateType.CERT_USER_1);
+        res = api.readCertificate(CertificateType.CERT_MOI_INTERMEDIATE_CA);
         if (res.status === CelikApiResponseStatus.OK) {
           console.log("DATA:");
           const data = res.data as any;

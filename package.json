@@ -1,11 +1,11 @@
 {
   "name": "node_celik",
   "version": "1.0.0",
-  "description": "Celik+ API MUP RS, prebacen u NodeJS (serverside-javascript)",
+  "description": "Celik+ API (MUP RS), prebacen u NodeJS (serverside-javascript)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc && node index.js"
+    "start": "npx tsc && node ./dist/index.js"
   },
   "author": "Aleksa Elezovic (Web-Ez)",
   "license": "ISC",

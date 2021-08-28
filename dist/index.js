@@ -44,6 +44,9 @@ devices.onActivated().then(function (e) {
                     return process.exit();
                 }
                 console.log("VERIFIED - CARD!");
+                // api.verifySignature(SignatureID.FIXED);
+                // api.verifySignature(SignatureID.PORTRAIT);
+                // api.verifySignature(SignatureID.VARIABLE);
                 /* -------TEST--------- */
                 var res = api.readDocumentData();
                 if (res.status === api_1.CelikApiResponseStatus.OK) {
@@ -85,7 +88,7 @@ devices.onActivated().then(function (e) {
                     console.log(res.status);
                 }
                 /* -------TEST CERT---- */
-                res = api.readCertificate(types_1.CertificateType.CERT_USER_1);
+                res = api.readCertificate(types_1.CertificateType.CERT_MOI_INTERMEDIATE_CA);
                 if (res.status === api_1.CelikApiResponseStatus.OK) {
                     console.log("DATA:");
                     var data = res.data;

@@ -47,11 +47,13 @@ var CelikApi = /** @class */ (function () {
     };
     CelikApi.prototype.readPortrait = function () {
         var pData = new types_1.default.PEID_PORTRAIT();
-        return responses_1.getResponse(this.celikApiLib.EidReadPortrait(pData.ref()), pData);
+        var res = this.celikApiLib.EidReadPortrait(pData.ref());
+        return responses_1.getResponse(res, pData);
     };
     CelikApi.prototype.readCertificate = function (certType) {
         var pData = new types_1.default.PEID_CERTIFICATE();
-        return responses_1.getResponse(this.celikApiLib.EidReadCertificate(pData.ref(), certType), pData);
+        var res = this.celikApiLib.EidReadCertificate(pData.ref(), certType);
+        return responses_1.getResponse(res, pData);
     };
     CelikApi.prototype.changePassword = function (oldPassword, newPassword) {
         var _triesLeft = this.refStore.getRef("triesLeft", "int");

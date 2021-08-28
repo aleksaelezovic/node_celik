@@ -48,26 +48,25 @@ class CelikApi {
     const res = this.celikApiLib.EidReadDocumentData(pData.ref());
     return getResponse(res, convertStruct(pData) as peidDocumentData);
   }
-  readFixedPersonalData(): CelikApiResponse {
+  readFixedPersonalData(): CelikApiResponse<peidFixedPersonalData> {
     const pData = new API_TYPES.PEID_FIXED_PERSONAL_DATA();
     const res = this.celikApiLib.EidReadFixedPersonalData(pData.ref());
     return getResponse(res, convertStruct(pData) as peidFixedPersonalData);
   }
-  readVariablePersonalData(): CelikApiResponse {
+  readVariablePersonalData(): CelikApiResponse<peidVariablePersonalData> {
     const pData = new API_TYPES.PEID_VARIABLE_PERSONAL_DATA();
     const res = this.celikApiLib.EidReadVariablePersonalData(pData.ref());
     return getResponse(res, convertStruct(pData) as peidVariablePersonalData);
   }
   readPortrait(): CelikApiResponse {
     const pData = new API_TYPES.PEID_PORTRAIT();
-    return getResponse(this.celikApiLib.EidReadPortrait(pData.ref()), pData);
+    const res = this.celikApiLib.EidReadPortrait(pData.ref());
+    return getResponse(res, pData);
   }
   readCertificate(certType: CertificateType): CelikApiResponse {
     const pData = new API_TYPES.PEID_CERTIFICATE();
-    return getResponse(
-      this.celikApiLib.EidReadCertificate(pData.ref(), certType),
-      pData
-    );
+    const res = this.celikApiLib.EidReadCertificate(pData.ref(), certType);
+    return getResponse(res, pData);
   }
 
   changePassword(
