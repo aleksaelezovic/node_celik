@@ -1,6 +1,6 @@
 console.log("---running!---");
 import CelikApi, { CelikApiResponseStatus } from "./models/api/api";
-import { CardType, SignatureID } from "./models/api/types";
+import { CardType, CertificateType, SignatureID } from "./models/api/types";
 
 const smartcard = require("smartcard");
 const Devices = smartcard.Devices;
@@ -30,16 +30,50 @@ devices.onActivated().then((e: any) => {
         console.log("VERIFIED - CARD!");
 
         /* -------TEST--------- */
-        const res = api.readDocumentData();
+        let res = api.readDocumentData();
         if (res.status === CelikApiResponseStatus.OK) {
           console.log("DATA:");
           const data = res.data!;
-          console.log(data.issuingAuthority);
-          console.log(data.docRegNo);
+          console.log(data);
         } else {
           console.log(res.status);
         }
-        /* -------------------- */
+        /* -------TEST FIXED--- */
+        res = api.readFixedPersonalData();
+        if (res.status === CelikApiResponseStatus.OK) {
+          console.log("DATA:");
+          const data = res.data!;
+          console.log(data);
+        } else {
+          console.log(res.status);
+        }
+        /* -------TEST VAR----- */
+        res = api.readVariablePersonalData();
+        if (res.status === CelikApiResponseStatus.OK) {
+          console.log("DATA:");
+          const data = res.data!;
+          console.log(data);
+        } else {
+          console.log(res.status);
+        }
+        /* -------TEST IMG----- */
+        res = api.readPortrait();
+        if (res.status === CelikApiResponseStatus.OK) {
+          console.log("DATA:");
+          const data = res.data as any;
+          console.log(data['portrait'].toString('base64'));
+        } else {
+          console.log(res.status);
+        }
+        /* -------TEST CERT---- */
+        res = api.readCertificate(CertificateType.CERT_USER_1);
+        if (res.status === CelikApiResponseStatus.OK) {
+          console.log("DATA:");
+          const data = res.data as any;
+          console.log(data['certificate'].toString('base64'));
+        } else {
+          console.log(res.status);
+        }
 
         status = api.endRead().status;
         if (status === CelikApiResponseStatus.OK) {

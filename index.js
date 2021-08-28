@@ -44,12 +44,52 @@ devices.onActivated().then(function (e) {
                     return process.exit();
                 }
                 console.log("VERIFIED - CARD!");
+                /* -------TEST--------- */
                 var res = api.readDocumentData();
                 if (res.status === api_1.CelikApiResponseStatus.OK) {
                     console.log("DATA:");
                     var data = res.data;
-                    console.log(data.issuingAuthority);
-                    console.log(data.docRegNo);
+                    console.log(data);
+                }
+                else {
+                    console.log(res.status);
+                }
+                /* -------TEST FIXED--- */
+                res = api.readFixedPersonalData();
+                if (res.status === api_1.CelikApiResponseStatus.OK) {
+                    console.log("DATA:");
+                    var data = res.data;
+                    console.log(data);
+                }
+                else {
+                    console.log(res.status);
+                }
+                /* -------TEST VAR----- */
+                res = api.readVariablePersonalData();
+                if (res.status === api_1.CelikApiResponseStatus.OK) {
+                    console.log("DATA:");
+                    var data = res.data;
+                    console.log(data);
+                }
+                else {
+                    console.log(res.status);
+                }
+                /* -------TEST IMG----- */
+                res = api.readPortrait();
+                if (res.status === api_1.CelikApiResponseStatus.OK) {
+                    console.log("DATA:");
+                    var data = res.data;
+                    console.log(data['portrait'].toString('base64'));
+                }
+                else {
+                    console.log(res.status);
+                }
+                /* -------TEST CERT---- */
+                res = api.readCertificate(types_1.CertificateType.CERT_USER_1);
+                if (res.status === api_1.CelikApiResponseStatus.OK) {
+                    console.log("DATA:");
+                    var data = res.data;
+                    console.log(data['certificate'].toString('base64'));
                 }
                 else {
                     console.log(res.status);

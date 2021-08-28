@@ -5,7 +5,13 @@ import {
   getResponse,
 } from "./responses";
 import API_TYPES, { Pointer } from "../celik/types";
-import { CardType, CertificateType, peidDocumentData } from "./types";
+import {
+  CardType,
+  CertificateType,
+  peidDocumentData,
+  peidFixedPersonalData,
+  peidVariablePersonalData,
+} from "./types";
 import { convertStruct } from "../converter";
 
 class CelikApi {
@@ -44,17 +50,13 @@ class CelikApi {
   }
   readFixedPersonalData(): CelikApiResponse {
     const pData = new API_TYPES.PEID_FIXED_PERSONAL_DATA();
-    return getResponse(
-      this.celikApiLib.EidReadFixedPersonalData(pData.ref()),
-      pData
-    );
+    const res = this.celikApiLib.EidReadFixedPersonalData(pData.ref());
+    return getResponse(res, convertStruct(pData) as peidFixedPersonalData);
   }
   readVariablePersonalData(): CelikApiResponse {
     const pData = new API_TYPES.PEID_VARIABLE_PERSONAL_DATA();
-    return getResponse(
-      this.celikApiLib.EidReadVariablePersonalData(pData.ref()),
-      pData
-    );
+    const res = this.celikApiLib.EidReadVariablePersonalData(pData.ref());
+    return getResponse(res, convertStruct(pData) as peidVariablePersonalData);
   }
   readPortrait(): CelikApiResponse {
     const pData = new API_TYPES.PEID_PORTRAIT();

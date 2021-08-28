@@ -7,6 +7,32 @@ export type peidDocumentData = {
   documentSerialNumber: string;
   chipSerialNumber: string;
 };
+export type peidFixedPersonalData = {
+  personalNumber: string;
+  surname: string;
+  givenName: string;
+  parentGivenName: string;
+  sex: string;
+  placeOfBirth: string;
+  stateOfBirth: string;
+  dateOfBirth: string;
+  communityOfBirth: string;
+  statusOfForeigner: string;
+  nationalityFull: string;
+};
+export type peidVariablePersonalData = {
+  state: string;
+  community: string;
+  place: string;
+  street: string;
+  houseNumber: string;
+  houseLetter: string;
+  entrance: string;
+  floor: string;
+  apartmentNumber: string;
+  addressDate: string;
+  addressLabel: string;
+};
 
 export enum CardType {
   DEFAULT = 0,

@@ -47,27 +47,27 @@ const PEID_DOCUMENT_DATA = StructType({
   // int chipSerialNumberSize;
 });
 const PEID_FIXED_PERSONAL_DATA = StructType({
-  personalNumber: ref.types.char,
+  personalNumber: char(BOUNDS.EID_MAX_PersonalNumber),
   personalNumberSize: ref.types.int,
-  surname: ref.types.char,
+  surname: char(BOUNDS.EID_MAX_Surname),
   surnameSize: ref.types.int,
-  givenName: ref.types.char,
+  givenName: char(BOUNDS.EID_MAX_GivenName),
   givenNameSize: ref.types.int,
-  parentGivenName: ref.types.char,
+  parentGivenName: char(BOUNDS.EID_MAX_ParentGivenName),
   parentGivenNameSize: ref.types.int,
-  sex: ref.types.char,
+  sex: char(BOUNDS.EID_MAX_Sex),
   sexSize: ref.types.int,
-  placeOfBirth: ref.types.char,
+  placeOfBirth: char(BOUNDS.EID_MAX_PlaceOfBirth),
   placeOfBirthSize: ref.types.int,
-  stateOfBirth: ref.types.char,
+  stateOfBirth: char(BOUNDS.EID_MAX_StateOfBirth),
   stateOfBirthSize: ref.types.int,
-  dateOfBirth: ref.types.char,
+  dateOfBirth: char(BOUNDS.EID_MAX_DateOfBirth),
   dateOfBirthSize: ref.types.int,
-  communityOfBirth: ref.types.char,
+  communityOfBirth: char(BOUNDS.EID_MAX_CommunityOfBirth),
   communityOfBirthSize: ref.types.int,
-  statusOfForeigner: ref.types.char,
+  statusOfForeigner: char(BOUNDS.EID_MAX_StatusOfForeigner),
   statusOfForeignerSize: ref.types.int,
-  nationalityFull: ref.types.char,
+  nationalityFull: char(BOUNDS.EID_MAX_NationalityFull),
   nationalityFullSize: ref.types.int,
   // char personalNumber[EID_MAX_PersonalNumber];
   // int personalNumberSize;
@@ -93,27 +93,27 @@ const PEID_FIXED_PERSONAL_DATA = StructType({
   // int nationalityFullSize;
 });
 const PEID_VARIABLE_PERSONAL_DATA = StructType({
-  state: ref.types.char,
+  state: char(BOUNDS.EID_MAX_State),
   stateSize: ref.types.int,
-  community: ref.types.char,
+  community: char(BOUNDS.EID_MAX_Community),
   communitySize: ref.types.int,
-  place: ref.types.char,
+  place: char(BOUNDS.EID_MAX_Place),
   placeSize: ref.types.int,
-  street: ref.types.char,
+  street: char(BOUNDS.EID_MAX_Street),
   streetSize: ref.types.int,
-  houseNumber: ref.types.char,
+  houseNumber: char(BOUNDS.EID_MAX_HouseNumber),
   houseNumberSize: ref.types.int,
-  houseLetter: ref.types.char,
+  houseLetter: char(BOUNDS.EID_MAX_HouseLetter),
   houseLetterSize: ref.types.int,
-  entrance: ref.types.char,
+  entrance: char(BOUNDS.EID_MAX_Entrance),
   entranceSize: ref.types.int,
-  floor: ref.types.char,
+  floor: char(BOUNDS.EID_MAX_Floor),
   floorSize: ref.types.int,
-  apartmentNumber: ref.types.char,
+  apartmentNumber: char(BOUNDS.EID_MAX_ApartmentNumber),
   apartmentNumberSize: ref.types.int,
-  addressDate: ref.types.char,
+  addressDate: char(BOUNDS.EID_MAX_AddressDate),
   addressDateSize: ref.types.int,
-  addressLabel: ref.types.char,
+  addressLabel: char(BOUNDS.EID_MAX_AddressLabel),
   addressLabelSize: ref.types.int,
   // char state[EID_MAX_State];
   // int stateSize;
@@ -138,15 +138,29 @@ const PEID_VARIABLE_PERSONAL_DATA = StructType({
   // char addressLabel[EID_MAX_AddressLabel];
   // int addressLabelSize;
 });
+
+const byte = (bytes: number): ref.Type<any> => {
+  return {
+    indirection: 1,
+    size: bytes,
+    alignment: 4,
+    name: "Byte",
+    get: (buffer: Buffer, offset: number) => buffer,
+    set: (buffer: Buffer, offset: number, value: string) => {
+      const x = buffer.write(value, offset, "utf-8");
+      return buffer;
+    },
+  };
+};
 const PEID_PORTRAIT = StructType({
-  portrait: ref.types.byte,
+  portrait: byte(BOUNDS.EID_MAX_Portrait),
   portraitSize: ref.types.int,
   // BYTE portrait[EID_MAX_Portrait];
   // int portraitSize;
 });
 const PEID_CERTIFICATE = StructType({
-  portrait: ref.types.byte,
-  portraitSize: ref.types.int,
+  certificate: byte(BOUNDS.EID_MAX_Certificate),
+  certificateSize: ref.types.int,
   // BYTE certificate[EID_MAX_Certificate];
   // int certificateSize;
 });

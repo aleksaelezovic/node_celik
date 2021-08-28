@@ -37,11 +37,13 @@ var CelikApi = /** @class */ (function () {
     };
     CelikApi.prototype.readFixedPersonalData = function () {
         var pData = new types_1.default.PEID_FIXED_PERSONAL_DATA();
-        return responses_1.getResponse(this.celikApiLib.EidReadFixedPersonalData(pData.ref()), pData);
+        var res = this.celikApiLib.EidReadFixedPersonalData(pData.ref());
+        return responses_1.getResponse(res, converter_1.convertStruct(pData));
     };
     CelikApi.prototype.readVariablePersonalData = function () {
         var pData = new types_1.default.PEID_VARIABLE_PERSONAL_DATA();
-        return responses_1.getResponse(this.celikApiLib.EidReadVariablePersonalData(pData.ref()), pData);
+        var res = this.celikApiLib.EidReadVariablePersonalData(pData.ref());
+        return responses_1.getResponse(res, converter_1.convertStruct(pData));
     };
     CelikApi.prototype.readPortrait = function () {
         var pData = new types_1.default.PEID_PORTRAIT();

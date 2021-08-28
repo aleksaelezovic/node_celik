@@ -70,27 +70,27 @@ var PEID_DOCUMENT_DATA = StructType({
     // int chipSerialNumberSize;
 });
 var PEID_FIXED_PERSONAL_DATA = StructType({
-    personalNumber: ref_napi_1.default.types.char,
+    personalNumber: char(BOUNDS.EID_MAX_PersonalNumber),
     personalNumberSize: ref_napi_1.default.types.int,
-    surname: ref_napi_1.default.types.char,
+    surname: char(BOUNDS.EID_MAX_Surname),
     surnameSize: ref_napi_1.default.types.int,
-    givenName: ref_napi_1.default.types.char,
+    givenName: char(BOUNDS.EID_MAX_GivenName),
     givenNameSize: ref_napi_1.default.types.int,
-    parentGivenName: ref_napi_1.default.types.char,
+    parentGivenName: char(BOUNDS.EID_MAX_ParentGivenName),
     parentGivenNameSize: ref_napi_1.default.types.int,
-    sex: ref_napi_1.default.types.char,
+    sex: char(BOUNDS.EID_MAX_Sex),
     sexSize: ref_napi_1.default.types.int,
-    placeOfBirth: ref_napi_1.default.types.char,
+    placeOfBirth: char(BOUNDS.EID_MAX_PlaceOfBirth),
     placeOfBirthSize: ref_napi_1.default.types.int,
-    stateOfBirth: ref_napi_1.default.types.char,
+    stateOfBirth: char(BOUNDS.EID_MAX_StateOfBirth),
     stateOfBirthSize: ref_napi_1.default.types.int,
-    dateOfBirth: ref_napi_1.default.types.char,
+    dateOfBirth: char(BOUNDS.EID_MAX_DateOfBirth),
     dateOfBirthSize: ref_napi_1.default.types.int,
-    communityOfBirth: ref_napi_1.default.types.char,
+    communityOfBirth: char(BOUNDS.EID_MAX_CommunityOfBirth),
     communityOfBirthSize: ref_napi_1.default.types.int,
-    statusOfForeigner: ref_napi_1.default.types.char,
+    statusOfForeigner: char(BOUNDS.EID_MAX_StatusOfForeigner),
     statusOfForeignerSize: ref_napi_1.default.types.int,
-    nationalityFull: ref_napi_1.default.types.char,
+    nationalityFull: char(BOUNDS.EID_MAX_NationalityFull),
     nationalityFullSize: ref_napi_1.default.types.int,
     // char personalNumber[EID_MAX_PersonalNumber];
     // int personalNumberSize;
@@ -116,27 +116,27 @@ var PEID_FIXED_PERSONAL_DATA = StructType({
     // int nationalityFullSize;
 });
 var PEID_VARIABLE_PERSONAL_DATA = StructType({
-    state: ref_napi_1.default.types.char,
+    state: char(BOUNDS.EID_MAX_State),
     stateSize: ref_napi_1.default.types.int,
-    community: ref_napi_1.default.types.char,
+    community: char(BOUNDS.EID_MAX_Community),
     communitySize: ref_napi_1.default.types.int,
-    place: ref_napi_1.default.types.char,
+    place: char(BOUNDS.EID_MAX_Place),
     placeSize: ref_napi_1.default.types.int,
-    street: ref_napi_1.default.types.char,
+    street: char(BOUNDS.EID_MAX_Street),
     streetSize: ref_napi_1.default.types.int,
-    houseNumber: ref_napi_1.default.types.char,
+    houseNumber: char(BOUNDS.EID_MAX_HouseNumber),
     houseNumberSize: ref_napi_1.default.types.int,
-    houseLetter: ref_napi_1.default.types.char,
+    houseLetter: char(BOUNDS.EID_MAX_HouseLetter),
     houseLetterSize: ref_napi_1.default.types.int,
-    entrance: ref_napi_1.default.types.char,
+    entrance: char(BOUNDS.EID_MAX_Entrance),
     entranceSize: ref_napi_1.default.types.int,
-    floor: ref_napi_1.default.types.char,
+    floor: char(BOUNDS.EID_MAX_Floor),
     floorSize: ref_napi_1.default.types.int,
-    apartmentNumber: ref_napi_1.default.types.char,
+    apartmentNumber: char(BOUNDS.EID_MAX_ApartmentNumber),
     apartmentNumberSize: ref_napi_1.default.types.int,
-    addressDate: ref_napi_1.default.types.char,
+    addressDate: char(BOUNDS.EID_MAX_AddressDate),
     addressDateSize: ref_napi_1.default.types.int,
-    addressLabel: ref_napi_1.default.types.char,
+    addressLabel: char(BOUNDS.EID_MAX_AddressLabel),
     addressLabelSize: ref_napi_1.default.types.int,
     // char state[EID_MAX_State];
     // int stateSize;
@@ -161,15 +161,28 @@ var PEID_VARIABLE_PERSONAL_DATA = StructType({
     // char addressLabel[EID_MAX_AddressLabel];
     // int addressLabelSize;
 });
+var byte = function (bytes) {
+    return {
+        indirection: 1,
+        size: bytes,
+        alignment: 4,
+        name: "Byte",
+        get: function (buffer, offset) { return buffer; },
+        set: function (buffer, offset, value) {
+            var x = buffer.write(value, offset, "utf-8");
+            return buffer;
+        },
+    };
+};
 var PEID_PORTRAIT = StructType({
-    portrait: ref_napi_1.default.types.byte,
+    portrait: byte(BOUNDS.EID_MAX_Portrait),
     portraitSize: ref_napi_1.default.types.int,
     // BYTE portrait[EID_MAX_Portrait];
     // int portraitSize;
 });
 var PEID_CERTIFICATE = StructType({
-    portrait: ref_napi_1.default.types.byte,
-    portraitSize: ref_napi_1.default.types.int,
+    certificate: byte(BOUNDS.EID_MAX_Certificate),
+    certificateSize: ref_napi_1.default.types.int,
     // BYTE certificate[EID_MAX_Certificate];
     // int certificateSize;
 });
