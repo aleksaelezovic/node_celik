@@ -1,0 +1,16 @@
+export const EID_OK                            =  0;
+export const EID_E_GENERAL_ERROR               = -1;
+export const EID_E_INVALID_PARAMETER           = -2;
+export const EID_E_VERSION_NOT_SUPPORTED       = -3;
+export const EID_E_NOT_INITIALIZED             = -4;
+export const EID_E_UNABLE_TO_EXECUTE           = -5;
+export const EID_E_READER_ERROR                = -6;
+export const EID_E_CARD_MISSING                = -7;
+export const EID_E_CARD_UNKNOWN                = -8;
+export const EID_E_CARD_MISMATCH               = -9;
+export const EID_E_UNABLE_TO_OPEN_SESSION      = -10;
+export const EID_E_DATA_MISSING                = -11;
+export const EID_E_CARD_SECFORMAT_CHECK_ERROR  = -12;
+export const EID_E_SECFORMAT_CHECK_CERT_ERROR  = -13;
+export const EID_E_INVALID_PASSWORD            = -14;
+export const EID_E_PIN_BLOCKED                 = -15;

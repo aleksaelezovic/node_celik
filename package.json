@@ -1,0 +1,21 @@
+{
+  "name": "node_celik",
+  "version": "1.0.0",
+  "description": "Celik+ API MUP RS, prebacen u NodeJS (serverside-javascript)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node index.js"
+  },
+  "author": "Aleksa Elezovic (Web-Ez)",
+  "license": "ISC",
+  "dependencies": {
+    "@types/ffi-napi": "^4.0.4",
+    "@types/ref-napi": "^3.0.4",
+    "@types/ref-struct-di": "^1.1.4",
+    "express": "^4.17.1",
+    "ffi-napi": "^4.0.3",
+    "ref-struct-di": "^1.1.1",
+    "smartcard": "^1.0.46"
+  }
+}
