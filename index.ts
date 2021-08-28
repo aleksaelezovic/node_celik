@@ -24,13 +24,20 @@ devices.onActivated().then((e: any) => {
 
         status = api.verifySignature(SignatureID.CARD).status;
         if (status !== CelikApiResponseStatus.OK) {
-          console.log("ERROR in VERIFY!");
+          console.log("ERROR in VERIFY, card!");
           return process.exit();
         }
-        console.log("VERIFIED - CARD!");
-        // api.verifySignature(SignatureID.FIXED);
-        // api.verifySignature(SignatureID.PORTRAIT);
-        // api.verifySignature(SignatureID.VARIABLE);
+        status = api.verifySignature(SignatureID.FIXED).status;
+        if (status !== CelikApiResponseStatus.OK) {
+          console.log("ERROR in VERIFY, fixed!");
+          return process.exit();
+        }
+        status = api.verifySignature(SignatureID.VARIABLE).status;
+        if (status !== CelikApiResponseStatus.OK) {
+          console.log("ERROR in VERIFY, variable!");
+          return process.exit();
+        }
+        console.log("VERIFIED!");
 
         /* -------TEST--------- */
         let res: any = api.readDocumentData();
@@ -64,18 +71,18 @@ devices.onActivated().then((e: any) => {
         if (res.status === CelikApiResponseStatus.OK) {
           console.log("DATA:");
           const data = res.data as any;
-          console.log(data['portrait'].toString('base64'));
+          console.log(data["portrait"].toString("base64"));
         } else {
           console.log(res.status);
         }
         /* -------TEST CERT---- */
-        res = api.readCertificate(CertificateType.CERT_MOI_INTERMEDIATE_CA);
-        if (res.status === CelikApiResponseStatus.OK) {
+        const c = api.readCertificate(CertificateType.CERT_USER_1);
+        if (c.status === CelikApiResponseStatus.OK) {
           console.log("DATA:");
-          const data = res.data as any;
-          console.log(data['certificate'].toString('base64'));
+          const data = c.data as any;
+          console.log(data["certificate"].toString("base64"));
         } else {
-          console.log(res.status);
+          console.log(c.status);
         }
 
         status = api.endRead().status;
