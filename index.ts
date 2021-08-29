@@ -14,8 +14,8 @@ export default class MUPCelikApi {
     if (device) this.startReadSync(device, cardType);
   }
 
-  private start() {
-    const status = this.api.startup().status;
+  private start(apiVersion = 3) {
+    const status = this.api.startup(apiVersion).status;
     if (status !== CelikApiResponseStatus.OK) throw new Error(status);
     this.isInit = true;
   }
@@ -94,7 +94,23 @@ export default class MUPCelikApi {
     this.isInit = false;
   }
 }
-export { MUPCelikApi };
+export { MUPCelikApi, CardType, SignatureID, CertificateType };
+
+/* EXAMPLE */
+const smartcard = require("smartcard");
+const devices = new smartcard.Devices();
+
+devices.on("device-activated", (e: any) => {
+  console.log("---Device:", e.device.name);
+  console.log("Waiting for card...");
+
+  e.device.on("card-inserted", (e: any) => {
+    console.log("---Card:", e.card.getAtr());
+
+    _test(e.device.name);
+  });
+});
+console.log("Waiting for device...");
 
 const _test = async (device: string) => {
   console.log("---START---");
@@ -113,19 +129,3 @@ const _test = async (device: string) => {
     process.exit();
   }
 };
-
-/* EXAMPLE */
-const smartcard = require("smartcard");
-const devices = new smartcard.Devices();
-
-devices.on("device-activated", (e: any) => {
-  console.log("---Device:", e.device.name);
-  console.log("Waiting for card...");
-
-  e.device.on("card-inserted", (e: any) => {
-    console.log("---Card:", e.card.getAtr());
-
-    _test(e.device.name);
-  });
-});
-console.log("Waiting for device...");

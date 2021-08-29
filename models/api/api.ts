@@ -22,9 +22,9 @@ class CelikApi {
     this.refStore = new RefStore();
   }
 
-  startup(): CelikApiResponse {
+  startup(apiVersion = 3): CelikApiResponse {
     // TRENUTNA (AVG 2021) VERZIJA API-ja je: 3
-    return getResponse(this.celikApiLib.EidStartup(3));
+    return getResponse(this.celikApiLib.EidStartup(apiVersion));
   }
   cleanup(): CelikApiResponse {
     return getResponse(this.celikApiLib.EidCleanup());
