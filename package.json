@@ -4,8 +4,8 @@
   "description": "Celik+ API (MUP RS), prebacen u NodeJS (serverside-javascript)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc && node ./dist/index.js"
+    "copy-dll": "xcopy /D .\\celik\\CelikApi.dll .\\dist\\celik\\",
+    "test": "npx tsc && npm run copy-dll && node ./dist/index.js"
   },
   "author": "Aleksa Elezovic (Web-Ez)",
   "license": "ISC",
