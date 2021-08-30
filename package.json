@@ -1,8 +1,9 @@
 {
   "name": "node_celik",
-  "version": "1.0.0",
+  "version": "1.0.1-2",
   "description": "Celik+ API (MUP RS), prebacen u NodeJS (serverside-javascript)",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "scripts": {
     "copy-dll": "xcopy /D .\\celik\\CelikApi.dll .\\dist\\celik\\",
     "test": "npx tsc && npm run copy-dll && node ./dist/index.js",
@@ -13,11 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "ffi-napi": "^4.0.3",
-    "ref-struct-di": "^1.1.1"
-  },
-  "devDependencies": {
+    "ref-struct-di": "^1.1.1",
     "@types/ffi-napi": "^4.0.4",
     "@types/ref-napi": "^3.0.4",
     "@types/ref-struct-di": "^1.1.4"
-  }
+  },
+  "devDependencies": {}
 }
