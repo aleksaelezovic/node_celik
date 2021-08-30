@@ -1,6 +1,6 @@
 {
   "name": "node_celik",
-  "version": "1.0.1-2",
+  "version": "1.0.1-3",
   "description": "Celik+ API (MUP RS), prebacen u NodeJS (serverside-javascript)",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -8,7 +8,7 @@
     "copy-dll": "xcopy /D .\\celik\\CelikApi.dll .\\dist\\celik\\",
     "test": "npx tsc && npm run copy-dll && node ./dist/index.js",
     "build": "npx tsc && npm run copy-dll",
-    "prepublishOnly": "npm run build"
+    "prepublish": "npm run build"
   },
   "author": "Aleksa Elezovic (Web-Ez)",
   "license": "ISC",
