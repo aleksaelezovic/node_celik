@@ -95,37 +95,3 @@ export default class MUPCelikApi {
   }
 }
 export { MUPCelikApi, CardType, SignatureID, CertificateType };
-
-/* EXAMPLE */
-const smartcard = require("smartcard");
-const devices = new smartcard.Devices();
-
-devices.on("device-activated", (e: any) => {
-  console.log("---Device:", e.device.name);
-  console.log("Waiting for card...");
-
-  e.device.on("card-inserted", (e: any) => {
-    console.log("---Card:", e.card.getAtr());
-
-    _test(e.device.name);
-  });
-});
-console.log("Waiting for device...");
-
-const _test = async (device: string) => {
-  console.log("---START---");
-  const celik = new MUPCelikApi(device);
-  try {
-    await celik.verifyAllSignatures();
-    const data = await celik.readAllData();
-    console.log(data);
-    // const cert = await celik.readCertificate(CertificateType.CERT_USER_1); // doesnt work, unable to execute
-    // console.log(cert);
-  } catch (e: any) {
-    console.log(e.message ?? new Error(e));
-  } finally {
-    await celik.end();
-    console.log("---END---");
-    process.exit();
-  }
-};

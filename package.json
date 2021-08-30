@@ -2,20 +2,22 @@
   "name": "node_celik",
   "version": "1.0.0",
   "description": "Celik+ API (MUP RS), prebacen u NodeJS (serverside-javascript)",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "copy-dll": "xcopy /D .\\celik\\CelikApi.dll .\\dist\\celik\\",
-    "test": "npx tsc && npm run copy-dll && node ./dist/index.js"
+    "test": "npx tsc && npm run copy-dll && node ./dist/index.js",
+    "build": "npx tsc && npm run copy-dll",
+    "prepublishOnly": "npm run build"
   },
   "author": "Aleksa Elezovic (Web-Ez)",
   "license": "ISC",
   "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "ref-struct-di": "^1.1.1"
+  },
+  "devDependencies": {
     "@types/ffi-napi": "^4.0.4",
     "@types/ref-napi": "^3.0.4",
-    "@types/ref-struct-di": "^1.1.4",
-    "express": "^4.17.1",
-    "ffi-napi": "^4.0.3",
-    "ref-struct-di": "^1.1.1",
-    "smartcard": "^1.0.46"
+    "@types/ref-struct-di": "^1.1.4"
   }
 }
